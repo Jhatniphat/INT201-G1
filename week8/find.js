@@ -21,9 +21,9 @@ console.log(fruits.findIndex(fruit => fruit.name === 'pineapple'))
 
 
 function isPrime(element) {
-    let start = 2;
-    while (start <= Math.sqrt(element)) {
-      if (element % start++ < 1) {
+    let i = 2;
+    while (i <= Math.sqrt(element)) {
+      if (element % i++ < 1) {
         return false;
       }
     }
@@ -33,3 +33,5 @@ function isPrime(element) {
 console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
 console.log([4, 5, 8, 12].find(isPrime)); // 5
 console.log([4, 5, 7, 12].find(isPrime)); // 5
+console.log([7, 5, 4, 12].find(isPrime)); // 7
+console.log([1, 5, 4, 12].find(isPrime)); // 5
