@@ -29,7 +29,10 @@ const students = [
 function getAttendanceRate(students){
     students.forEach(student => {
         const attCount = student.attendance.filter( (att) => att ==true).length
-        console.log(`Attendance Percentage of ${student.name} are ${((attCount)/student.attendance.length)*100}`)
+        const attPercentage = (attCount /student.attendance.length)*100
+        if(attPercentage < 80){
+          console.log(`Attendance Percentage of ${student.name} are ${attPercentage}`)
+        }
     });
 }
 
@@ -40,4 +43,21 @@ function getAvgScore(students){
     })
 }
 
-getAttendanceRate(students)
+function underPerformStudents(students){
+  let result = []
+  students.forEach(student =>{
+    const AvgScore = ( student.testScores.reduce( (score1 , score2) => score1 + score2 , 0) )/student.testScores.length
+    const attCount = student.attendance.filter( (att) => att ==true).length
+    const attPercentage = (attCount /student.attendance.length)*100
+    if(attPercentage < 80 || AvgScore < 70){
+      result.push({name : student.name , attendanceRate : attPercentage , avgScore : AvgScore})
+    }
+    
+  })
+  return result;
+}
+
+console.log(underPerformStudents(students))
+
+console.log('---------------------------')
+console.log(students)
