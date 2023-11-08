@@ -28,8 +28,8 @@ const students = [
 
 function getAttendanceRate(students){
     students.forEach(student => {
-        const attCount = student.attendance.filter( (att) => att ==true).length
-        const attPercentage = (attCount /student.attendance.length)*100
+        // const attCount = student.attendance.filter( (att) => att ==true).length
+        const attPercentage = (student.attendance.filter( (att) => att === true).length /student.attendance.length)*100
         if(attPercentage < 80){
           console.log(`Attendance Percentage of ${student.name} are ${attPercentage}`)
         }
@@ -38,8 +38,8 @@ function getAttendanceRate(students){
 
 function getAvgScore(students){
     students.forEach(student => {
-        const sum = student.testScores.reduce( (score1 , score2) => score1 + score2 , 0)
-        console.log(`AvgScore of ${student.name} are ${sum/student.testScores.length}`)
+        const AvgScore = ( student.testScores.reduce( (score1 , score2) => score1 + score2 , 0) )/student.testScores.length
+        console.log(`AvgScore of ${student.name} are ${AvgScore}`)
     })
 }
 
@@ -47,9 +47,8 @@ function underPerformStudents(students){
   let result = []
   students.forEach(student =>{
     const AvgScore = ( student.testScores.reduce( (score1 , score2) => score1 + score2 , 0) )/student.testScores.length
-    const attCount = student.attendance.filter( (att) => att ==true).length
-    const attPercentage = (attCount /student.attendance.length)*100
-    if(attPercentage < 80 || AvgScore < 70){
+    const attPercentage = (student.attendance.filter( (att) => att ==true).length /student.attendance.length)*100
+    if(attPercentage < 80 && AvgScore < 70){
       result.push({name : student.name , attendanceRate : attPercentage , avgScore : AvgScore})
     }
     
@@ -59,5 +58,5 @@ function underPerformStudents(students){
 
 console.log(underPerformStudents(students))
 
-console.log('---------------------------')
-console.log(students)
+// console.log('---------------------------')
+// console.log(students)
